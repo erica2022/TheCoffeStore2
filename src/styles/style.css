@@ -1,0 +1,73 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+.title {
+    color: #666666;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 22px;
+    padding: 20px 20px;
+    margin-top: 30px;
+}
+
+.logo{
+    width: 70%;
+    padding: 20px 20px;
+}
+
+.producto{
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.text{
+    color:#1b1b1b;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    padding: 20px 20px;
+}
+
+.textCard{
+    color:#1b1b1b;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+.add{
+    color:white;
+    background-color: grey;
+    font-family: 'Roboto', sans-serif;
+    width: 30px;
+    font-size: 16px;
+    padding: 8px 8px;
+    margin: 5px 40px;
+    border-radius: 5px;
+    border: 0px;
+}
+
+.addDetail{
+    color:white;
+    background-color: grey;
+    font-family: 'Roboto', sans-serif;
+    width: 250px;
+    font-size: 16px;
+    padding: 5px 5px;
+    margin: 5px auto;
+    border-radius: 5px;
+    border: 0px;
+}
+
+.listPro {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
