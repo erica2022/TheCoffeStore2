@@ -4,11 +4,12 @@ import ItemCount from "../ItemCount/ItemCount"
 import { Context } from "../../context/Context"
 import AddButton from "../ItemCount/ItemCount"
 import { Link, NavLink } from "react-router-dom"
+import Buttons from "../Buttons/Buttons"
 
 export default function ItemDetail ({coffee}){
 
-    const [count, setCount ] = React.useState(1)
-    const {isInCart, addToCart} = React.useContext(Context)
+    const [count, setCount] = React.useState(1)
+    const {isInCart, addItem, removeItem} = React.useContext(Context)
 
     const img =
     {
@@ -27,7 +28,7 @@ export default function ItemDetail ({coffee}){
     }
 
     return(
-       <Container>
+    <Container>
        <Row>         
             <Col sm={6}>
                 <Card border="light" style={{ height: '300px', border: '0px solid #000000', margin:'30px'}}>
@@ -43,21 +44,19 @@ export default function ItemDetail ({coffee}){
                         <p className="textCard"><b>Stock:</b> {coffee.stock}</p>
                         <p className="textCard"><b>Precio:</b> {coffee.price}</p>
                     </Card.Text>
-                    {isInCart(coffee.id) 
-                        ? (<NavLink to ="/cart"><button className="addDetail"> Ir al carrito</button></NavLink>) 
-                        : <AddButton
-                            onSubmit={() => addToCart(coffee, count)}
+                    {!isInCart(coffee.id) 
+                        ?  (<AddButton
+                            onSubmit={() => addItem(coffee, count)}
                             count={count}
                             setCount={setCount}
                             stock={coffee.stock}
-                          />
+                          />)
+                        : (<div className="text-center"><NavLink to ="/cart"><Buttons text= {"Ir al carrito"} style={"addDetail"}/></NavLink> </div>)
                     }
-              
                 </Card.Body>
                 </Card>                  
             </Col>   
         </Row> 
- 
-        </Container>
+    </Container>
     )
 }

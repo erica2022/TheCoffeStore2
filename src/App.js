@@ -1,38 +1,35 @@
 import NavBar from "./components/Navbar/Navbar"
 import {Routes, Route, BrowserRouter} from 'react-router-dom'
-import Learn from "./views/Learn/Learn"
 import Products from "./views/Products/Products"
 import Item from "./components/Item/Item";
 import Category from "./views/Category/Category"
 import Detail from "./views/Detail/Detail";
-import Cart from "./views/Cart/Cart"
+import ShopCart from "./views/ShopCart/ShopCart"
 import {CartProvider} from "./context/Context"
+import CheckOut from "./views/CheckOut/CheckOut";
+
 
 
 function App() {
+
   return ( 
     <> 
-    <BrowserRouter>
-      <NavBar/>
+    <BrowserRouter>    
       <CartProvider>      
+        <NavBar/>
         <Routes>
           <Route exact path="/" element={<Products/>}/>
           <Route exact path="/products" element={<Products/>}/>
-          <Route exact path="/learn" element={<Learn/>}/>
           <Route exact path="/item/:itemId" element={<Item/>}/>   
           <Route exact path="/category/:catId" element={<Category/>}/> 
           <Route exact path="/detail/:detailId" element={<Detail/>}/> 
-          <Route exact path="/cart" element={<Cart/>} />            
+          <Route exact path="/cart" element={<ShopCart/>} />  
+          <Route exact path="/CheckOut" element ={<CheckOut/>} />          
         </Routes>
       </CartProvider>
     </BrowserRouter>
-    </>
-    /*
-    <div className="App">
-      <NavBar/>
-
-    </div>*/
-  );
+   </>
+   );
 }
 
 

@@ -37,8 +37,7 @@ const link = {
                         <NavDropdown.Item ><NavLink to ="/Category/suave" style={link}> Suave </NavLink></NavDropdown.Item>
                         <NavDropdown.Item ><NavLink to ="/Category/fuerte" style={link}> Fuerte </NavLink></NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link> <NavLink to ="/Learn" style={link}> Aprendé </NavLink></Nav.Link> 
-                    <CartWidget count={8}/>
+                    <CartWidget/>
                 </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -1,6 +1,7 @@
 import { Card} from "react-bootstrap"
 import { NavLink } from "react-router-dom"
 import React from "react"
+import Buttons from "../Buttons/Buttons"
 
 /* CARD CON EL PRODUCTO Y LOS BOTONES DEL ITEMCOUNT*/
 export default function Item ({product}) {
@@ -28,7 +29,7 @@ export default function Item ({product}) {
                 <Card.Text className="text-center"> 
                     <p>Precio: {product.price}</p>
                 </Card.Text>
-                <NavLink to ={`/detail/${product.id}`}><button className="addDetail"> Ver detalle </button></NavLink> 
+                <NavLink to ={`/detail/${product.id}`}><Buttons text= {"Ver detalle"} style={"addDetail"}/></NavLink> 
             </Card.Body>
         </Card>
     )
