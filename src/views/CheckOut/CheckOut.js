@@ -1,7 +1,10 @@
 import React from "react";
-import {Container, Form, Button} from "react-bootstrap"
+import {Container, Form, Button, Col, Row} from "react-bootstrap"
 import { Context } from "../../context/Context"
-import {getFirestore, collection, addDoc, doc, runTransaction} from "firebase/firestore"
+import {getFirestore, collection, addDoc, doc, runTransaction, Timestamp} from "firebase/firestore"
+import FinishOrder from "../../components/FinishOrder/FinishOrder"
+import Resume from "../../components/Resume/resume";
+import Forms from "../Form/Form"
 
 export default function CheckOut () {
 
@@ -23,21 +26,18 @@ export default function CheckOut () {
     },[]);
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
- 
-//      setNewOrder(newArray)
-        console.log(coffeeCart)
-               
+        event.preventDefault();            
         const order = {
           buyer: data,
           items: newOrder,
+          status: "generada",
+          date: Timestamp.fromDate( new Date),
           total: total(),
         };
-      
+        
         const db = getFirestore()
         const ordersCollection = collection(db, "orders")
         const productsCollection = collection(db, "productos")
-        await console.log(newOrder) 
         await addDoc(ordersCollection, order).then(({id}) => {
           setOrderId(id);
           updateProducts()
@@ -60,32 +60,29 @@ export default function CheckOut () {
           transaction.update(productRef, { stock: newStock });
         });
         })
-      }
+    }   
 
+    const Equal = () => {
+      return (data.email === data.email2)
+    }
 
-return(
+    return(
     (show) ? (
-    <Container>
+      <Container>
         <h1 className="title">FINALIZAR COMPRA</h1>
-    <div class="col-6" >
-      <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label >Nombre:</Form.Label>
-        <Form.Control type="text" placeholder="Nombre" name="name" onChange={handleChange}/>        
-        <Form.Label style={{ marginTop:'20px'}}>Correo electrónico</Form.Label>
-        <Form.Control type="email" placeholder="Correo electrónico" name="email" onChange={handleChange}/>
-        <Form.Label style={{ marginTop:'20px'}}>Teléfono:</Form.Label>
-        <Form.Control type="phone" placeholder="Teléfono" name="phone" onChange={handleChange}/>
-        <Button style={{ marginTop:'30px'}} type="submit" variant="secondary">Finalizar compra</Button>
-      </Form.Group>
-    </Form>
-     </div>
-     </Container>
+        <Row>
+          <Col sm="6">
+            <Forms handleChange={handleChange} handleSubmit={handleSubmit} value={data.email === data.email2}/>
+          </Col>
+          <Col sm="6">
+            <Resume/>
+          </Col>
+        </Row>
+      </Container>
     )
-    :(<>
-      <h1 className="title">Su pedido con nro de Orden <b>{orderId}</b> ha sido aceptado.</h1>
-      </>
+    :(<Container>
+      <FinishOrder orderId={orderId} data={data}/>
+      </Container>
     )
 )
-
 }

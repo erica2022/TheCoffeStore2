@@ -23,8 +23,7 @@ export default function ItemListContainer({catId}) {
                  console.log("no hay productos") 
                 }
                 setItems(snapshots.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-                setLoading(false);
-            console.log(items)    
+                setLoading(false);   
             });
         } else {
         const productsRef = collection(db, "productos");
@@ -35,8 +34,7 @@ export default function ItemListContainer({catId}) {
               setItems(snapshots.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
               setLoading(false);
             });    
-        }
-     console.log(loading)   
+        } 
      },[catId,loading])
 
   return( 

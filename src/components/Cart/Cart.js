@@ -19,7 +19,7 @@ const list = {
 return( 
     (!coffeeCart.length>0) 
     ? (<Container><div className="title"> El carrito esta vacio
-    <NavLink to ="/products"><button className="addDetail"> Empezar a comprar </button></NavLink></div></Container>)
+    <NavLink to ="/products"><Buttons text={"Empezar a comprar"} style={"addDetail"} /></NavLink></div></Container>)
     : (
     <Container>
         <h1 className="title"> MI CARRITO </h1>
@@ -28,8 +28,7 @@ return(
         <p className="text text-center">El total de tu compra es de <b>{total()}$</b></p>  
         <div className="text-center"> <NavLink to ="/CheckOut"><Buttons text= {"Comprar"} style={"addDetail"}/></NavLink>
         <Buttons text={"Vaciar Carrito"} handle={() => clear()} style={"addDetail"} />
-        </div>
-        
+        </div>    
     </Container>)  
 )
 }
